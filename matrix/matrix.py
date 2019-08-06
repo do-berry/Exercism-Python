@@ -1,11 +1,11 @@
-import numpy as np
-
 class Matrix(object):
+
     def __init__(self, matrix_string):
-        self.matrix = np.matrix(matrix_string.replace("\n",";"))
+        self.rows = [tuple(map(int, line.split())) for line in tuple(matrix_string.splitlines())]
+        self.columns = tuple(map(tuple, zip(*self.rows)))
 
     def row(self, index):
-        return [row[index - 1] for row in self.matrix]
+        return list(self.rows[index - 1])
 
     def column(self, index):
-        return [row[index - 1] for row in self.matrix]
+        return list(self.columns[index - 1])
